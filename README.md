@@ -39,9 +39,14 @@
 
 ### 1. Instalar dependencias de Composer
 Navega a la carpeta del backend y ejecuta el siguiente comando para instalar las dependencias de Laravel:
-
 ```
 composer install
+```
+
+### 1.1. Habilitar extensión zip de PHP (opcional para instalar dependencias)
+Navega a la carpeta C:\xampp\php\php.ini y descomentamos la siguiente línea:
+```
+;extension=zip
 ```
 
 ### 2. Configurar el archivo .env
