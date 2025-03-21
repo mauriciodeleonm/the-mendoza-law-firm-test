@@ -1,5 +1,3 @@
----
-
 ## Tecnologías Utilizadas
 
 - **Backend**:
@@ -30,12 +28,5 @@
     "email": "juan@example.com",
     "message": "Estoy interesado en su servicio"
   }
-  ```
 
-  **Imagen de configuración de XAMPP**:
-  ![XAMPP Configuration](https://github.com/user-attachments/assets/dd5ef95a-de8e-4511-b638-ddd3adcf6607)
-
-### Frontend
-- **Puerto**: `5173`
-
----
+![image](https://github.com/user-attachments/assets/63784a13-3d23-4e6b-bce9-4d714718dbf9)
