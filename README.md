@@ -30,3 +30,40 @@
   }
 
 ![image](https://github.com/user-attachments/assets/63784a13-3d23-4e6b-bce9-4d714718dbf9)
+
+## Backend (Laravel)
+
+### 1. Instalar dependencias de Composer
+Navega a la carpeta del backend y ejecuta el siguiente comando para instalar las dependencias de Laravel:
+
+```
+composer install
+```
+
+### 2. Configurar el archivo .env
+```
+cp .env.example .env
+```
+
+Edita el archivo .env y agrega la siguiente configuración para conectar con la base de datos:
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=examen-tecnico
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+### 3. Generar la clave de aplicación y migrar la base de datos
+```
+php artisan key:generate
+php artisan migrate
+
+```
+
+### 4. Iniciar el servidor
+```
+php artisan serve
+
+```
