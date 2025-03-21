@@ -1,7 +1,9 @@
 import './App.css'
 import { useState } from "react";
+import { useTranslation } from 'react-i18next';
 
 function App() {
+  const { t, i18n } = useTranslation(); // Usa la función t para obtener las traducciones y i18n para cambiar el idioma
   const [formData, setFormData] = useState({
     nombre: "",
     telefono: "",
@@ -12,7 +14,7 @@ function App() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
 
-    if (name === "telefono" && !/^\d*$/.test(value)) return; // Solo permite números
+    if (name === "telefono" && !/^\d*$/.test(value)) return; // Solo números
 
     setFormData({
       ...formData,
@@ -25,16 +27,21 @@ function App() {
 
     // Verificar si algún campo está vacío
     if (!formData.nombre.trim() || !formData.telefono.trim() || !formData.mensaje.trim()) {
-      alert("Todos los campos son obligatorios");
+      alert(t('alertaCampos'));
       return;
     }
 
     if (!formData.terminos) {
-      alert("Debes aceptar los términos y condiciones");
+      alert(t('alertaTerminos'));
       return;
     }
 
-    alert("Formulario enviado correctamente");
+    alert(t('alertaEnvio'));
+  };
+
+  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedLanguage = e.target.value;
+    i18n.changeLanguage(selectedLanguage); // Cambiamos el idioma usando la función changeLanguage
   };
 
   return (
@@ -55,16 +62,14 @@ function App() {
 
             <div className="order-1 lg:order-2 lg:col-span-2 pt-8">
 
-              <p className='text-white text-lg font-semibold leading-none'>
-                ¡Quieres ir a trabajar <span className='text-[#019b2a]'>legalmente en EE. UU.</span> como enfermera con la <span className='text-[#019b2a]'>visa TN</span> y disfrutar de oportunidades que <span className='text-[#019b2a]'>transformarán tu futuro</span>, regístrate.
-              </p>
+              <p className='text-white text-lg font-semibold leading-none' dangerouslySetInnerHTML={{ __html: t('titulo') }}></p>
 
               <p className='mt-5 text-white'>
-                Déjanos tus datos y nos pondremos en contacto contigo lo antes posible.
+                {t('subtitulo')}
               </p>
 
               <form onSubmit={handleSubmit} className='bg-[#012858] rounded-2xl p-6 flex justify-center items-center flex-col gap-5 mt-6 w-[500px] max-w-[90%] mx-auto'>
-                <h3 className='uppercase text-white leading-none'>Tus datos</h3>
+                <h3 className='uppercase text-white leading-none'>{t('leyenda')}</h3>
 
                 <input
                   type="text"
@@ -72,7 +77,7 @@ function App() {
                   value={formData.nombre || ""}
                   onChange={handleChange}
                   className="bg-white p-1 text-sm w-full"
-                  placeholder='Nombre'
+                  placeholder={t('nombre')}
                 />
 
                 <input
@@ -81,7 +86,7 @@ function App() {
                   value={formData.telefono}
                   onChange={handleChange}
                   className="bg-white p-1 text-sm w-full"
-                  placeholder='Teléfono'
+                  placeholder={t('telefono')}
                 />
 
                 <textarea
@@ -90,13 +95,12 @@ function App() {
                   value={formData.mensaje}
                   onChange={handleChange}
                   className="bg-white p-1 text-sm w-full"
-                  placeholder='Escribe tu mensaje...'
+                  placeholder={t('mensaje')}
                 ></textarea>
 
                 <hr className="border-white border-1 w-full" />
 
                 <div className="flex items-center">
-
                   <input
                     type="checkbox"
                     className="w-8 h-8 text-blue-600 bg-gray-200 border-gray-400 rounded-none focus:ring-blue-500"
@@ -106,19 +110,26 @@ function App() {
                   />
 
                   <p className='text-white leading-none text-xs text-start ps-3'>
-                    Al proporcionar mi número de teléfono a The Mendoza Law Firm, acepto y reconozco que The Mendoza Law. <a href='#' className='text-green-500'>Política de privacidad.</a> <a href='#' className='text-red-500'>Ver más</a>.
+                    <span dangerouslySetInnerHTML={{ __html: t('terminos') }} />
                   </p>
-
                 </div>
 
-                <button className='bg-[#ff0000] uppercase w-40 px-2 py-3 text-xs text-white hover:bg-[#d80000] transition-colors cursor-pointer'>Enviar</button>
-
+                <button className='bg-[#ff0000] uppercase w-40 px-2 py-3 text-xs text-white hover:bg-[#d80000] transition-colors cursor-pointer'>{t('enviar')}</button>
               </form>
 
             </div>
 
           </div>
         </section>
+
+        {/* Select para cambiar el idioma */}
+        <div className="absolute top-5 right-5 z-10">
+          <select onChange={handleLanguageChange} className="bg-white p-2 rounded">
+            <option value="es">Español</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+
       </div>
     </>
   )
