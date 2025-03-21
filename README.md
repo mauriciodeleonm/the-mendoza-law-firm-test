@@ -31,6 +31,8 @@
 
 ![image](https://github.com/user-attachments/assets/63784a13-3d23-4e6b-bce9-4d714718dbf9)
 
+---
+
 ## Backend (Laravel)
 
 ### 1. Instalar dependencias de Composer
@@ -59,11 +61,24 @@ DB_PASSWORD=
 ```
 php artisan key:generate
 php artisan migrate
-
 ```
 
 ### 4. Iniciar el servidor
 ```
 php artisan serve
+```
 
+---
+
+## Frontend (React)
+
+### 1. Instalar dependencias de Node
+
+```
+npm install
+```
+
+### 2. Iniciar el servidor de desarrollo
+```
+npm run dev
 ```
