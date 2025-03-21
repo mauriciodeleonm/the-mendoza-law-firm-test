@@ -14,6 +14,8 @@
 ## Configuración y Puertos
 
 ### XAMPP
+- **Frontend**: 
+  - **Puerto**: `5173`
 - **Backend**: 
   - **Puerto**: `8000`
   - **EndPoints disponibles**:
